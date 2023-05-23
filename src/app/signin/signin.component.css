@@ -1,0 +1,26 @@
+label {
+  font-size: 1rem;
+  font-weight: 400;
+}
+input {
+  border: 1px solid #d1d4d6;
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  margin-top: 7px;
+  outline-style: none;
+  background-color: #f3f2f7;
+  font-size: 10px;
+}
+button {
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #ffc831;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+  border: none;
+  margin-top: 1rem;
+}

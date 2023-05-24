@@ -6,8 +6,8 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, SigninComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, SignupComponent, SigninComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

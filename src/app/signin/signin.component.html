@@ -1,5 +1,5 @@
 <div class="w-screen h-screen flex items-center justify-center bg-[#f3f2f7]">
-  <div class="w-2/4 h-2/3 bg-white flex rounded-[1rem] drop-shadow-2xl">
+  <div class="w-2/4 h-2/3 bg-white flex drop-shadow-2xl">
     <div
       class="h-full bg-[#F6F7F9] flex flex-col justify-center p-[4rem] w-2/4"
     >
@@ -7,22 +7,43 @@
         <h2 class="text-2xl font-medium pb-2">Sign In</h2>
         <h3 class="pb-8 font-bold text-3xl">Welcome back</h3>
       </div>
-      <form class="flex flex-col">
+      <form class="flex flex-col" (ngSubmit)="onSubmit()" #form="ngForm">
         <label>Email:</label>
-        <input placeholder="Enter your email" type="email" />
+        <input
+          placeholder="Enter your email"
+          type="email"
+          ngModel
+          name="email"
+          required
+          #email="ngModel"
+        />
+        <p class="error" *ngIf="!email.valid && email.touched">
+          Email is required*
+        </p>
+
         <label>Password:</label>
-        <input placeholder="Enter your password" type="password" />
+        <input
+          placeholder="Enter your password"
+          type="password"
+          ngModel
+          name="password"
+          required
+          #password="ngModel"
+        />
+        <p class="error" *ngIf="!password.valid && password.touched">
+          Password is required*
+        </p>
         <p
           class="text-blue-500 mb-6 flex items-center justify-end cursor-pointer"
         >
           <span>Forgot password?</span>
         </p>
-        <button class="">Sign In</button>
+        <button type="submit">Sign In</button>
       </form>
       <div class="flex flex-col items-center justify-center mt-10">
         <p class="pt-5">
           Dont have an account?
-          <a routerLink="signup" class="text-blue-500 cursor-pointer"
+          <a routerLink="/signup" class="text-blue-500 cursor-pointer"
             >Sign Up</a
           >
         </p>

@@ -1,23 +1,80 @@
 <div class="w-screen h-screen flex items-center justify-center bg-[#f3f2f7]">
-  <div class="w-2/4 bg-white flex rounded-[1rem] drop-shadow-2xl">
+  <div class="w-2/4 bg-white flex drop-shadow-2xl">
     <div
       class="h-full flex flex-col justify-center bg-[#F6F7F9] p-[4rem] w-2/4"
     >
       <div class="flex flex-col items-center justify-center">
         <h2 class="text-3xl font-bold pb-8">Sign Up</h2>
       </div>
-      <form class="flex flex-col">
+      <form class="flex flex-col" (ngSubmit)="onSubmit()" #form="ngForm">
         <label>Name:</label>
-        <input placeholder="Enter your name" type="text" />
+        <input
+          placeholder="Enter your name"
+          type="text"
+          ngModel
+          name="name"
+          required
+          #name="ngModel"
+        />
+        <p class="error" *ngIf="!name.valid && name.touched">
+          name is required*
+        </p>
         <label>Email:</label>
-        <input placeholder="Enter your email" type="email" />
+        <input
+          placeholder="Enter your email"
+          type="email"
+          ngModel
+          name="email"
+          required
+          #email="ngModel"
+        />
+        <p class="error" *ngIf="!email.valid && email.touched">
+          Email is required*
+        </p>
         <label>Phone: </label>
-        <input placeholder="Enter you phone number" type="number" />
+        <input
+          placeholder="Enter you phone number"
+          type="number"
+          ngModel
+          name="phone"
+          pattern="^\d{10}$"
+          required
+          #phone="ngModel"
+        />
+        <p class="error" *ngIf="!phone.valid && phone.touched">
+          Phone number is required and must be 10 digits*
+        </p>
+
         <label>Password:</label>
-        <input placeholder="Enter your password" type="password" />
+        <input
+          placeholder="Enter your password"
+          type="password"
+          ngModel
+          name="password"
+          required
+          #password="ngModel"
+        />
+        <p class="error" *ngIf="!password.valid && password.touched">
+          Password is required*
+        </p>
+
         <label>Confirm Password:</label>
-        <input placeholder="Confirm password" type="password" />
-        <button>Sign up</button>
+        <input
+          placeholder="Confirm password"
+          type="password"
+          ngModel
+          name="confirmPassword"
+          required
+          #confirmPassword="ngModel"
+        />
+        <p
+          class="error"
+          *ngIf="!confirmPassword.valid && confirmPassword.touched"
+        >
+          Confirm password is required*
+        </p>
+
+        <button type="submit">Sign up</button>
       </form>
       <div class="flex flex-col items-center justify-center mt-10">
         <p class="pt-5">

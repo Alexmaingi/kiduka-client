@@ -8,8 +8,14 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-  declarations: [AppComponent,  SigninComponent],
-  imports: [BrowserModule, AppRoutingModule, HomeComponent, CartComponent,SignupComponent],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HomeComponent,
+    CartComponent,
+    SignupComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -24,3 +24,11 @@ button {
   border: none;
   margin-top: 1rem;
 }
+.error {
+  color: red;
+  font-size: small;
+  padding-bottom: 5px;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

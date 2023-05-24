@@ -1,9 +1,9 @@
-button {
-    padding: .6rem;
+ #checkout{
+    padding: .8rem;
     border-radius: 5px;
     background-color: #ffc831;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: .8rem;
+    font-weight: 500;
     color: black;
     border: none;
    

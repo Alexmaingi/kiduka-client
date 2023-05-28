@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../Services/cart.service';
+import { OrdersService } from '../Services/orders.service';
+import { Order } from '../Interfaces';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +13,7 @@ import { CartService } from '../Services/cart.service';
 })
 export class CartComponent {
   totalPrice =0
-  constructor(private cartService:CartService){}
+  constructor(private cartService:CartService, private orderService:OrdersService){}
   
   getCart(){
        
@@ -35,4 +37,11 @@ export class CartComponent {
    },0)
    return this.totalPrice
   }
+
+    //pass user_id
+  makeOrder(){
+    this.orderService.makeOrder(this.getCart())
+    this.cartService.clearCart()
+  }
+
 }

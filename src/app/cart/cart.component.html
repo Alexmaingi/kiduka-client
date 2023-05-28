@@ -1,11 +1,11 @@
 <div class="container flex m-8 gap-6 justify-center " >
-    <div class="cart-details w-3/5 border">
-    <div class="cart-title border p-2">
+    <div class="cart-details w-3/5 ">
+    <div class="cart-title p-2">
         <p class="">cart ({{getCart().length}})</p>
     </div>
-    <div class="cart-items " *ngFor="let item of getCart()">
+    <div class="cart-items " *ngFor="let item of getCart()" >
        
-        <div class="one-cart-item border">
+        <div class="one-cart-item border m-1">
             <div class="top flex justify-between">
                 <div class="img-name-desc flex m-2 gap-2">
                     <img src="{{item.image}}" alt="img" class="w-24 h-24">
@@ -36,6 +36,6 @@
             <P class="m-2">Total</P>
             <p class="m-2 font-bold" >KSH {{getTotalPrice()}}</p>
         </div>
-        <button id="checkout" class="border m-2 ">CHECKOUT({{getTotalPrice()}})</button>
+        <button id="checkout" class="border m-2 " (click)="makeOrder()">CHECKOUT({{getTotalPrice()}})</button>
     </div>
 </div>

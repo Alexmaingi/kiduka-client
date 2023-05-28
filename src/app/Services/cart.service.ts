@@ -60,4 +60,7 @@ private cart:Cart[]=[{"productName": "unga",
   //   },0)
   //   return this.totalPrice
   // }
+  clearCart(){
+    this.cart=[]
+  }
  }

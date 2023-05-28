@@ -20,10 +20,26 @@ export interface Cart{
 }
 
 export interface Order{
-    order_id:string
-    product_id:string
-    user_id:string
-    count:number
-    isCncelled:number
+    productName: string
+    order_id: string
+    image: string
+    count: number
+    isCancelled:number
     status:string
+}
+
+export interface OrderAdmin{
+   user_name:string
+    email: string
+    order_status: string
+    order_id:string
+
+}
+
+export interface OrderUser{
+    product_name:string
+    description:string
+    order_id: string
+    product_image:string
+    order_status:string
 }

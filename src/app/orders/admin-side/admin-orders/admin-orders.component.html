@@ -1,0 +1,23 @@
+<div class="container flex m-8 gap-6 justify-center ">
+
+    <div class="all-orders w-3/5">
+        <!-- <h3 class="font-semibold">Orders ({{getAllOrders().length}})</h3> -->
+        <div *ngIf="ordersAdmin | async as allOrders" class="overflow-auto">
+            <div class="one-order bg-white shadow-md rounded-lg p-4 mb-4 flex justify-between"  *ngFor="let order of allOrders">
+                <div class="flex flex-col justify-between">
+        
+                    <p class="font-semibold">Username: <span class="font-light">{{order.user_name}}</span></p>
+                    <p class="font-semibold">User Email: <span class="font-light">{{order.email}}</span></p>
+                    <p class="font-semibold">Order id: <span class="font-light">{{order.order_id}}</span></p>
+                    <p class="font-semibold"> Order status:<span class="bg-yellow-300 py-1 px-2  max-w-max inline-block font-light">{{order.order_status}}</span></p>
+                </div>
+                <p *ngIf="order.order_status === 'dispatched'" class="bg-yellow-400 py-1 px-2 rounded-md cursor-pointer mt-4 h-8" (click)="markAsDelivered(order.order_id)">Delivered</p>
+                <p *ngIf="order.order_status === 'pending'" class="bg-yellow-400 py-1 px-2 rounded-md cursor-pointer mt-4 h-8" (click)="markAsDispatched(order.order_id)">Dispatched</p>
+            </div>
+            
+        </div>
+      
+       
+    </div>
+</div>
+

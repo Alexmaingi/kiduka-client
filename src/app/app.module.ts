@@ -8,10 +8,11 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import {HttpClientModule} from '@angular/common/http';
-import { IonicModule } from '@ionic/angular'
+import { IonicModule } from '@ionic/angular';
+import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-orders.component'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,7 +21,8 @@ import { IonicModule } from '@ionic/angular'
     SignupComponent,
     OrdersComponent,
     HttpClientModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    AdminOrdersComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

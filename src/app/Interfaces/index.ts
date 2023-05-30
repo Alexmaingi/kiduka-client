@@ -43,6 +43,7 @@ export interface OrderUser{
     order_id: string
     product_image:string
     order_status:string
+    isCancelled:number
 }
 
 export interface addToCart{

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Cart, Order, OrderAdmin, OrderUser } from '../Interfaces';
+import { Cart, Order, OrderAdmin, OrderUser, successMessages } from '../Interfaces';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,46 +16,46 @@ export class OrdersService {
     "status":"pending"
   }]
   
-  constructor() { }
-  makeOrder(cart:Cart[]){
-    for(let c of cart){
-      let order:Order= {
-        "order_id":c.id,
-        "productName":c.productName,
-        "image":c.image,
-        "count":c.count,
-        "isCancelled":0,
-        "status":"pending"
-      }
-      this.orders.push(order)
-    }
+  token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZmFhZGY3LTAxNWMtNDNkZC05NjM4LTM2NmZiYzIwYjg3YyIsIm5hbWUiOiJ5YWFuaSB0dSIsImVtYWlsIjoiNzY1NDZAZXhhbXBsZS5jb20iLCJwaG9uZU51bWJlciI6NzQ0MzkzNDIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NTM2MzUyNCwiZXhwIjoxNjg1NzIzNTI0fQ.aE_E7BEbTnW2xGsVsxpJV99AnHTcNKIH-EHi5vtAkdo'
 
+  constructor(private  http:HttpClient) { }
+  makeOrder(): Observable<successMessages> {
+    return this.http.post<successMessages>('http://localhost:4000/order/d1faadf7-015c-43dd-9638-366fbc20b87c', '',
+    {
+      headers: new HttpHeaders().set('token',this.token)}
+    );
   }
-  removeOrder(id:string){
-     let order= this.orders.find(x=>x.order_id===id)
-     if(order){
-     order.isCancelled=1
-     }
+  getUserOrders():Observable<OrderUser[]>{
+    return this.http.get<OrderUser[]>('http://localhost:4000/order/d1faadf7-015c-43dd-9638-366fbc20b87c',
+    {
+      headers: new HttpHeaders().set('token',this.token)}
+    );
   }
+  removeOrder(id:string) :Observable<successMessages>{
+    return this.http.put<successMessages>(`http://localhost:4000/order/delete/${id}`, '',
+    {
+      headers: new HttpHeaders().set('token',this.token)}
+    );
+  
+  } 
   markAsDelivered(id:string){
-    let order= this.orders.find(x=>x.order_id===id)
-    if(order){
-    order.status="delivered"
-    }
+    return this.http.put<successMessages>(`http://localhost:4000/order/delivered/${id}`, '',
+    {
+      headers: new HttpHeaders().set('token',this.token)}
+    );
   }
   markAsDispatched(id:string){
-    let order= this.orders.find(x=>x.order_id===id)
-    if(order){
-    order.status="dispatched"
-    }
+    return this.http.put<successMessages>(`http://localhost:4000/order/dispatched/${id}`, '',
+    {
+      headers: new HttpHeaders().set('token',this.token)}
+    );
   }
-  getAllOrders(){
-    return this.orders
+  getAllOrders(): Observable<OrderAdmin[]> {
+    return this.http.get<OrderAdmin[]>('http://localhost:4000/order',
+    {
+      headers: new HttpHeaders().set('token',this.token)}
+    );
   }
-  // getAllOrdersByUserId(user_id:string){
-  //   return this.orders.filter(x=>x.user_id===user_id) 
-
-  // }
-  
+ 
 
 }

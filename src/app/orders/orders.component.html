@@ -2,21 +2,25 @@
 <div class="container flex m-8 gap-6 justify-center ">
 
     <div class="all-orders w-3/5">
-        <h3 class="font-semibold">Orders ({{getAllOrders().length}})</h3>
-        <div class="one-order" class="flex gap-3 border m-1" *ngFor="let order of getAllOrders()">
-            <img class="w-30 h-32" src="{{order.image}}" alt="item-img">
-            <div class="add-space flex justify-between ">
-                <div class="order-details" class="flex-col space-y-4">
-                    <p>{{order.productName}}</p>
-                    <p>{{order.order_id}}</p>
-                    <p *ngIf="!order.isCancelled" class="bg-[#ffe49b] p-1 max-w-max ">{{order.status}}</p>
-                    <p *ngIf="order.isCancelled" class="bg-[#ffe49b] p-1 max-w-max">cancelled</p>
+        <!-- <h3 class="font-semibold">Orders ({{getAllOrders().length}})</h3> -->
+        <div *ngIf="allOrdersUser | async as uOrders">
+            <div class="one-order" class="flex gap-3 border m-1" *ngFor="let uorder of uOrders">
+                <img class="w-30 h-32" src="{{uorder.product_image}}" alt="item-img">
+                <div class="add-space flex justify-between ">
+                    <div class="order-details" class="flex-col space-y-4">
+                        <p>{{uorder.product_name}}</p>
+                        <p>{{uorder.order_id}}</p>
+                        <p *ngIf="!uorder.isCancelled" class="bg-[#ffe49b] p-1 max-w-max ">{{uorder.order_status}}</p>
+                        <p *ngIf="uorder.isCancelled" class="bg-[#ffe49b] p-1 max-w-max">cancelled</p>
+                    </div>
+                    <p *ngIf="!uorder.isCancelled" class="bg-[#ffc831] p-1 rounded h-8 cursor-pointer" (click)="removeOrder(uorder.order_id)" >CANCEL</p>
+                    
                 </div>
-                <p *ngIf="!order.isCancelled" class="bg-[#ffc831] p-1 rounded h-8 cursor-pointer" (click)="removeOrder(order.order_id)" >CANCEL</p>
-                
+            
             </div>
-        
         </div>
+      
        
     </div>
 </div>
+

@@ -41,7 +41,7 @@
             <P class="m-2">Total</P>
             <p class="m-2 font-bold" >KSH {{totalPrice | async}}</p>
         </div>
-         <button id="checkout" class="border m-2 " >CHECKOUT({{totalPrice | async}})</button>
+         <button id="checkout" class="border m-2 " (click)="makeOrder()" >CHECKOUT({{totalPrice | async}})</button>
         <button id="checkout" class="border m-2 " (click)="addToCart()">test</button>
     </div>
 </div>

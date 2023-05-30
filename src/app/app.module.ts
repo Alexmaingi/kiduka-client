@@ -7,6 +7,8 @@ import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
+import {HttpClientModule} from '@angular/common/http';
+import { IonicModule } from '@ionic/angular'
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +18,9 @@ import { OrdersComponent } from './orders/orders.component';
     HomeComponent,
     CartComponent,
     SignupComponent,
-    OrdersComponent
+    OrdersComponent,
+    HttpClientModule,
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

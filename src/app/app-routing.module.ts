@@ -4,12 +4,14 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
-  { path: '', component: SigninComponent },
+  { path: 'sigin', component: SigninComponent },
   {path:'home',component: HomeComponent},
-  {path:'cart',component:CartComponent}
+  {path:'',component:CartComponent},
+  {path:'order',component:OrdersComponent}
 ];
 
 @NgModule({

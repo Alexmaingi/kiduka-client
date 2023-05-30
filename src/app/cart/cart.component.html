@@ -1,41 +1,47 @@
 <div class="container flex m-8 gap-6 justify-center " >
     <div class="cart-details w-3/5 ">
-    <div class="cart-title p-2">
-        <p class="">cart ({{getCart().length}})</p>
-    </div>
-    <div class="cart-items " *ngFor="let item of getCart()" >
+
+    <div *ngIf="cart | async as c">
+        <div class="cart-title p-2 font-semibold flex justify-between">
+            <p class="">cart ({{c.length}})</p>
+            <a id="checkout"  routerLink="/order">Orders</a>
+        </div>
+        <div class="cart-items " *ngFor="let item of c" >
        
-        <div class="one-cart-item border m-1">
-            <div class="top flex justify-between">
-                <div class="img-name-desc flex m-2 gap-2">
-                    <img src="{{item.image}}" alt="img" class="w-24 h-24">
-                    <div class="name-desc">
-                        <p>{{item.productName}}</p>
-                        <p>{{item.description}}</p>
+            <div class="one-cart-item border m-1">
+                <div class="top flex justify-between">
+                    <div class="img-name-desc flex m-2 gap-2">
+                        <img src="{{item.image}}" alt="img" class="w-24 h-24">
+                        <div class="name-desc">
+                            <p>{{item.productName}}</p>
+                            <p>{{item.description}}</p>
+                        </div>
+                        
                     </div>
-                    
+                    <P class="m-2 font-semibold">ksh {{item.price * item.count}}</P>
                 </div>
-                <P class="m-2 font-semibold">ksh {{item.price * item.count}}</P>
-            </div>
-           
-            <div class="controls flex justify-between m-2">
-                <button class="px-3 rounded-md bg-[#ffc831]  " (click)="deleteItem(item.id)">Remove</button>
-                <div class="add-minus flex justify-center items-center">
-                   <button class="w-5 h-5 flex justify-center items-center p-3 rounded-sm bg-[#ffc831]" (click)="minusCount(item.id)">-</button>
-                    <p class="m-3">{{item.count}}</p>
-                    <button class="w-5 h-5 flex justify-center items-center p-3 rounded-sm bg-[#ffc831]" (click)="addCount(item.id)">+</button>
+               
+                <div class="controls flex justify-between m-2">
+                    <button class="px-3 rounded-md bg-[#ffc831]  " (click)="deleteItem(item.cart_id)">Remove</button>
+                    <div class="add-minus flex justify-center items-center">
+                       <button class="w-5 h-5 flex justify-center items-center p-3 rounded-sm bg-[#ffc831]" (click)="minusCount(item.cart_id)">-</button>
+                        <p class="m-3">{{item.count}}</p>
+                        <button class="w-5 h-5 flex justify-center items-center p-3 rounded-sm bg-[#ffc831]" (click)="addCount(item.cart_id)">+</button>
+                    </div>
                 </div>
+               
             </div>
-           
         </div>
     </div>
+   
     </div>
     <div class="checkout border h-2/5">
         <p class=" m-2 font-semibold">CART SUMMARY</p>
         <div class="cart-totals border flex justify-between ">
             <P class="m-2">Total</P>
-            <p class="m-2 font-bold" >KSH {{getTotalPrice()}}</p>
+            <p class="m-2 font-bold" >KSH {{totalPrice | async}}</p>
         </div>
-        <button id="checkout" class="border m-2 " (click)="makeOrder()">CHECKOUT({{getTotalPrice()}})</button>
+         <button id="checkout" class="border m-2 " >CHECKOUT({{totalPrice | async}})</button>
+        <button id="checkout" class="border m-2 " (click)="addToCart()">test</button>
     </div>
 </div>

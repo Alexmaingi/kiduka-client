@@ -17,6 +17,7 @@ export interface Cart{
     price: number
     image: string
     count: number
+    cart_id:string
 }
 
 export interface Order{
@@ -42,4 +43,13 @@ export interface OrderUser{
     order_id: string
     product_image:string
     order_status:string
+}
+
+export interface addToCart{
+    product_id:string
+    user_id:string
+}
+
+export interface successMessages{
+    message:string
 }

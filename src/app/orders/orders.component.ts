@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdersService } from '../Services/orders.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })

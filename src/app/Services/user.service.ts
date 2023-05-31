@@ -16,14 +16,14 @@ export class UserService {
 
   addUser(newUser: NewUser): Observable<AddUserSuccess> {
     return this.http.post<AddUserSuccess>(
-      'http://192.168.77.127:4000/users',
+      'http://localhost:4000/users',
       newUser
     );
   }
 
   loginUser(loginUser: Login): Observable<LogUserSuccess> {
     return this.http.post<LogUserSuccess>(
-      'http://192.168.77.127:4000/users/login',
+      'http://localhost:4000/users/login',
       loginUser
     );
   }

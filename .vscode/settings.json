@@ -35,7 +35,7 @@
 
   "editor.unicodeHighlight.ambiguousCharacters": false,
 
-  "workbench.colorTheme": "Tomorrow Night Blue",
+  "workbench.colorTheme": "Ayu Dark Bordered",
 
   "editor.codeActionsOnSave": {}
 }

@@ -1,35 +1,53 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { UserService } from '../Services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  standalone:true,
-  imports: [FormsModule]
-  
-  
+  standalone: true,
+  imports: [FormsModule, RouterModule, ReactiveFormsModule, CommonModule],
 })
 
-// handling validation from backend 
+// handling validation from backend
 export class SignupComponent {
-  constructor( private userService:UserService , private router:Router){}
- formData:any ={}
- @ViewChild('signUpForm')
-  signUpForm!: NgForm;
- signUp(){
-  if (this.signUpForm.invalid) {
-    console.log("invalid");
-    return null
+  form!: FormGroup;
+  errorMessage!: null;
+  constructor(private fb: FormBuilder, private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      // confirmPassword: ['', [Validators.required]],
+    });
   }
-  let userTrying = this.userService.signup(this.formData)
-  if (userTrying) {
-    console.log("success");
-   return  this.router.navigate(['home'])
-  } else{console.log("fail"); 
-return null}
-  
- }
+
+  signUp() {
+    this.userService
+      .addUser({
+        ...this.form.value,
+        phoneNumber: +this.form.value.phoneNumber,
+      })
+      .subscribe(
+        (res) => {
+          console.log(res.message);
+        },
+        (err) => {
+          this.errorMessage = err.message;
+        }
+      );
+    console.log(this.form.value);
+  }
 }

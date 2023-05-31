@@ -1,0 +1,32 @@
+<div class="w-[1400px] h-[100px] flex justify-around items-center">
+  <div
+    class="bg-[#F3F5F7] w-[40rem] p-0 flex items-center justify-between rounded-full"
+  >
+    <input
+      type="text"
+      placeholder="Search..."
+      class="bg-transparent outline-none text-[1.2rem] text-[#637381] px-6"
+    />
+    <button
+      class="bg-[#637381] rounded-full justify-center items-center flex px-5 py-4"
+    >
+      <img src="../../../assets/icons/search.svg" alt="" />
+    </button>
+  </div>
+  <div class="flex items-center justify-center">
+    <img src="../../../assets/icons/busket.svg" alt="" />
+    <button
+      class="w-[120px] h-[40px] px-[24px] py-[10px] bg-[#FFC831] rounded-full ml-5"
+      *ngIf="!authService.isloggedIn()"
+    >
+      <a routerLink="/signin">Sign In </a>
+    </button>
+    <button
+      class="w-[120px] h-[40px] px-[24px] py-[10px] bg-[#FFC831] rounded-full ml-5"
+      (click)="authService.logout()"
+      *ngIf="authService.isloggedIn()"
+    >
+      Log out
+    </button>
+  </div>
+</div>

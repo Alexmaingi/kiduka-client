@@ -4,12 +4,19 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
+import { ProductPageComponent } from './Home-components/product-page/product-page.component';
+import { ActivateService } from './Services/activate.service';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
-  { path: '', component: SigninComponent },
-  {path:'home',component: HomeComponent},
-  {path:'cart',component:CartComponent}
+  { path: 'signin', component: SigninComponent },
+  { path: '', component: HomeComponent },
+  { path: 'cart', component: CartComponent },
+  {
+    path: 'product',
+    canActivate: [ActivateService],
+    component: ProductPageComponent,
+  },
 ];
 
 @NgModule({

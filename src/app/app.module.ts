@@ -11,6 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-orders.component'
 
+
+
 @NgModule({
   declarations: [AppComponent,],
   imports: [
@@ -19,10 +21,13 @@ import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-ord
     HomeComponent,
     CartComponent,
     SignupComponent,
+
     OrdersComponent,
     HttpClientModule,
     IonicModule.forRoot(),
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    SigninComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

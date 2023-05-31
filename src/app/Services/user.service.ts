@@ -1,35 +1,32 @@
+import {
+  AddUserSuccess,
+  LogUserSuccess,
+  Login,
+  NewUser,
+} from './../Interfaces/index';
 import { Injectable } from '@angular/core';
-import { User } from '../Interfaces';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private user:User[] =[{name:'Joy',email:"joy@gmail.com",phone:713303567,password:"password"}]
-    
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  login(email:string, password:string){
-   if( this.user.find(u=>u.email===email && u.password ===password)){
-    return this.user.find(u=>u.email===email && u.password ===password)
-    
-   }return null
-   
+  addUser(newUser: NewUser): Observable<AddUserSuccess> {
+    return this.http.post<AddUserSuccess>(
+      'http://192.168.77.127:4000/users',
+      newUser
+    );
   }
 
-  signup(userTrying:User){
-    if(userTrying.email){
-     if( this.user.find(u=>u.email===userTrying.email)){
-      
-      return null
-     }else{return userTrying}
-     
-    }else{return null}
-    
-
+  loginUser(loginUser: Login): Observable<LogUserSuccess> {
+    return this.http.post<LogUserSuccess>(
+      'http://192.168.77.127:4000/users/login',
+      loginUser
+    );
   }
-  forgotPassword(){
-    
-  }
-
 }
+
+// 'http://192.168.43.156:4000/users',

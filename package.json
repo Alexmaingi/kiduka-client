@@ -18,7 +18,11 @@
     "@angular/platform-browser": "^16.0.2",
     "@angular/platform-browser-dynamic": "^16.0.2",
     "@angular/router": "^16.0.2",
+<<<<<<< HEAD
     "@ionic/angular": "^7.0.9",
+=======
+    "material-icons": "^1.13.7",
+>>>>>>> 8215ffef94ddfc2544154ae6626488da7e6db6ae
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

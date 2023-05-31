@@ -1,10 +1,11 @@
-export interface User{
-    name:string
-    email:string
-    phone:number
-    password:string
-    confirmPassword?:string
+export interface NewUser {
+  name: string;
+  email: string;
+  phoneNumber: number;
+  password: string;
+  confirmPassword?: string;
 }
+
 
 export interface Product{
     name: string
@@ -54,3 +55,17 @@ export interface addToCart{
 export interface successMessages{
     message:string
 }
+
+export interface AddUserSuccess {
+  message: string;
+}
+
+export interface Login {
+  email: string;
+  password: string;
+}
+export interface LogUserSuccess {
+  message: string;
+  token: string;
+}
+

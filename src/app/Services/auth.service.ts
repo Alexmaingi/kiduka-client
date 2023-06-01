@@ -12,6 +12,7 @@ export class AuthService {
 
   login(res: LogUserSuccess) {
     localStorage.setItem('token', res.token);
+    localStorage.setItem('role', res.role)
   }
   logout() {
     localStorage.clear();

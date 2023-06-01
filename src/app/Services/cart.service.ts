@@ -24,9 +24,10 @@ private cart:Cart[]=[{"productName": "unga",
 "count": 1,
 "cart_id":'1'}]
   constructor(private http:HttpClient) { }
-  token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZmFhZGY3LTAxNWMtNDNkZC05NjM4LTM2NmZiYzIwYjg3YyIsIm5hbWUiOiJ5YWFuaSB0dSIsImVtYWlsIjoiNzY1NDZAZXhhbXBsZS5jb20iLCJwaG9uZU51bWJlciI6NzQ0MzkzNDIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NTM2MzUyNCwiZXhwIjoxNjg1NzIzNTI0fQ.aE_E7BEbTnW2xGsVsxpJV99AnHTcNKIH-EHi5vtAkdo'
+  token = localStorage.getItem('token') as string
 
   getItemsInUserCart():Observable<Cart[]>{
+    
     return this.http.get<Cart[]>('http://localhost:4000/cart/d1faadf7-015c-43dd-9638-366fbc20b87c',{
       headers:new HttpHeaders().set('token',this.token)
     })

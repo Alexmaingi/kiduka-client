@@ -19,7 +19,7 @@
 
   "emulator.emulatorPathLinux": "/home/alexmaingi/android-studio",
 
-  "window.zoomLevel": -2,
+  "window.zoomLevel": 0,
 
   "liveServer.settings.donotShowInfoMsg": true,
 
@@ -37,5 +37,6 @@
 
   "workbench.colorTheme": "Ayu Dark Bordered",
 
-  "editor.codeActionsOnSave": {}
+  "editor.codeActionsOnSave": {},
+  "editor.accessibilityPageSize": 14
 }

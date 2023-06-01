@@ -9,7 +9,9 @@ import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import {HttpClientModule} from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
-import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-orders.component'
+import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './Home-components/products/admin-side/admin-products/admin-products.component'
+import { AddProductComponent } from './Home-components/products/admin-side/add-product/add-product.component';
 
 
 
@@ -21,12 +23,13 @@ import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-ord
     HomeComponent,
     CartComponent,
     SignupComponent,
-
+    AddProductComponent,
     OrdersComponent,
     HttpClientModule,
     IonicModule.forRoot(),
     AdminOrdersComponent,
     SigninComponent,
+    AdminProductsComponent
 
   ],
   providers: [],

@@ -45,7 +45,12 @@ export class SigninComponent {
         console.log(this.form.value);
         this.errorMessage = null;
         this.authservice.login(res);
-        this.router.navigateByUrl('/');
+        if(res.role === 'user'){
+          this.router.navigateByUrl('/');
+        }else{
+          this.router.navigateByUrl('/adminProduct');
+        }
+        
       },
       (err) => {
         this.errorMessage = err.error.message;

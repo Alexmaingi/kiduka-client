@@ -8,7 +8,13 @@ export interface NewUser {
 
 
 export interface Product{
-    name: string
+  id: string,
+  productName: string,
+  isDeleted?: number,
+  inStock:number,
+  price: number,
+  image: string,
+  description:string
 }
 
 export interface Cart{
@@ -67,5 +73,6 @@ export interface Login {
 export interface LogUserSuccess {
   message: string;
   token: string;
+  role:string
 }
 

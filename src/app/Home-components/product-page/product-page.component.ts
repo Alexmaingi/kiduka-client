@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ProductService } from 'src/app/Services/product.service';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/Interfaces';
 
 @Component({
   selector: 'app-product-page',
@@ -9,4 +12,20 @@ import { RouterModule } from '@angular/router';
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.css'],
 })
-export class ProductPageComponent {}
+export class ProductPageComponent implements OnInit{
+  product$!:Observable<Product[]>
+  prodId:string =''
+  constructor(public productService:ProductService, private route:ActivatedRoute){}
+
+  ngOnInit(): void{
+    this.prodId = this.route.snapshot.params['id']
+     this.product$ =this.productService.getProduct(this.prodId)
+     
+   
+  }
+  setProdId(prod_id:string){
+    this.prodId=prod_id
+  }
+ 
+
+}

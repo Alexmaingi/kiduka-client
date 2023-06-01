@@ -9,6 +9,8 @@ import { ProductPageComponent } from './Home-components/product-page/product-pag
 import { ActivateService } from './Services/activate.service';
 
 import { OrdersComponent } from './orders/orders.component';
+import { AdminProductsComponent } from './Home-components/products/admin-side/admin-products/admin-products.component';
+import { AddProductComponent } from './Home-components/products/admin-side/add-product/add-product.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -17,6 +19,9 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'order',component:OrdersComponent},
   {path:'adminOrder',component:AdminOrdersComponent},
+  {path:'adminProduct', component:AdminProductsComponent},
+  {path:'addProduct', component:AddProductComponent},
+  {path:'products/:id', component:ProductPageComponent},
   {
     path: 'product',
     canActivate: [ActivateService],

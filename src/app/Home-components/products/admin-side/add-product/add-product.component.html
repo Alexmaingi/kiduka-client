@@ -1,0 +1,54 @@
+<div class="w-screen h-screen flex items-center justify-center bg-[#f3f2f7]">
+    <div class="w-2/4 bg-white flex drop-shadow-2xl">
+      <div
+        class="h-full flex flex-col justify-center bg-[#F6F7F9] p-[4rem] w-2/4"
+      >
+        <div class="flex flex-col items-center justify-center">
+          <h2 class="text-3xl font-bold pb-8">Add Product</h2>
+        </div>
+  
+        <form class="flex flex-col" (ngSubmit)="add()" [formGroup]="form">
+          <label>Product Name:</label>
+          <input
+            placeholder="Enter product name"
+            type="text"
+            formControlName="productName"
+            required
+          />
+          <label>Stock:</label>
+          <input
+            placeholder="Enter stock amount"
+            type="number"
+            formControlName="inStock"
+            required
+          />
+          <label>Price: </label>
+          <input
+            placeholder="Enter price"
+            type="number"
+            formControlName="price"
+            required
+          />
+          <label>Image:</label>
+          <input
+            placeholder="Enter product Image"
+            type="text"
+            formControlName="image"
+            required
+          />
+          <label>Description:</label>
+          <input
+            placeholder="Enter Description"
+            type="text"
+            formControlName="description"
+            required
+          />
+          <button *ngIf='!isUpdating' type="submit">Add Product</button>
+          <button *ngIf='isUpdating'type="submit">Update Product</button>
+        </form>
+     
+      </div>
+    
+    </div>
+  </div>
+  

@@ -1,4 +1,3 @@
-
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -39,6 +38,8 @@ export class SigninComponent {
     });
   }
 
+  showParagraph = false;
+
   logIn() {
     this.userService.loginUser(this.form.value).subscribe(
       (res) => {
@@ -51,5 +52,11 @@ export class SigninComponent {
         this.errorMessage = err.error.message;
       }
     );
+  }
+
+  sendEmail() {
+    this.userService.forgotPassword(this.form.value).subscribe((res) => {
+      console.log(this.form.value);
+    });
   }
 }

@@ -1,4 +1,3 @@
-
 import { Component, ViewChild } from '@angular/core';
 import {
   FormBuilder,
@@ -23,7 +22,11 @@ import { CommonModule } from '@angular/common';
 export class SignupComponent {
   form!: FormGroup;
   errorMessage!: null;
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -44,6 +47,7 @@ export class SignupComponent {
       .subscribe(
         (res) => {
           console.log(res.message);
+          this.router.navigateByUrl('/');
         },
         (err) => {
           this.errorMessage = err.message;

@@ -74,5 +74,6 @@ export interface LogUserSuccess {
   message: string;
   token: string;
   role:string
+  uid:string
 }
 

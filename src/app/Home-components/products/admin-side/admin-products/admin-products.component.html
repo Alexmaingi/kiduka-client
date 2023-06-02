@@ -1,3 +1,7 @@
+
+<div class="nav">
+  <a routerLink="/addProduct"> add Product</a>
+</div>
 <div class="my-10 w-[1400px] p-5 grid grid-cols-3 gap-10" *ngIf="products | async as prods">
     <div class="rounded-[1rem] w-[356px]"  *ngFor="let p of prods">
       <div 
@@ -5,7 +9,7 @@
       >
         <img 
           class="max-h-64"
-          src=`{{p.image}}`
+          src={{p.image}}
           alt=""
         />
       </div>

@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-  token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZmFhZGY3LTAxNWMtNDNkZC05NjM4LTM2NmZiYzIwYjg3YyIsIm5hbWUiOiJ5YWFuaSB0dSIsImVtYWlsIjoiNzY1NDZAZXhhbXBsZS5jb20iLCJwaG9uZU51bWJlciI6NzQ0MzkzNDIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NTM2MzUyNCwiZXhwIjoxNjg1NzIzNTI0fQ.aE_E7BEbTnW2xGsVsxpJV99AnHTcNKIH-EHi5vtAkdo'
+ // token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZmFhZGY3LTAxNWMtNDNkZC05NjM4LTM2NmZiYzIwYjg3YyIsIm5hbWUiOiJ5YWFuaSB0dSIsImVtYWlsIjoiNzY1NDZAZXhhbXBsZS5jb20iLCJwaG9uZU51bWJlciI6NzQ0MzkzNDIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NTM2MzUyNCwiZXhwIjoxNjg1NzIzNTI0fQ.aE_E7BEbTnW2xGsVsxpJV99AnHTcNKIH-EHi5vtAkdo'
   updatedProduct!:Product
-  //token = localStorage.getItem('token')
+  token = localStorage.getItem('token') as string
   constructor(private http:HttpClient) { }
 
   // all products
@@ -18,7 +18,6 @@ export class ProductService {
     return this.http.get<Product[]>('http://localhost:4000/products')    
   }
   addItemsToCart(prod_id:string):Observable<successMessages>{
-   
     return this.http.post<successMessages>(`http://localhost:4000/cart/${prod_id}`,'',{
       headers: new HttpHeaders().set('token',this.token)
     })

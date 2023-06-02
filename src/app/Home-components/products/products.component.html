@@ -5,7 +5,7 @@
     >
       <img 
         class="max-h-64"
-        src=`{{p.image}}`
+        src={{p.image}}
         alt=""
       />
     </div>
@@ -26,9 +26,9 @@
         <span
           class="p-3 rounded-full hover:bg-[#C1C0E5] bg-[#F9FAFB] items-center justify-center flex"
         >
-          <a (click)="productService.addItemsToCart(p.id)"
-            ><img src="../../../assets/icons/cart.svg" alt="" /></a
-        ></span>
+         
+            <img src="../../../assets/icons/cart.svg" alt="" (click)="addToCart(p.id)"/>
+        </span>
       </div>
     </div>
   </div>

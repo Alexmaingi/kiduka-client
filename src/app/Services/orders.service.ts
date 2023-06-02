@@ -7,26 +7,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OrdersService {
-  private orders:Order[]=[{
-    "order_id":"1",
-    "productName":"mic",
-    "image":"https://i.shgcdn.com/e20910ab-f171-4135-a9c7-112fe1f52290/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
-    "count":2,
-    "isCancelled":1,
-    "status":"pending"
-  }]
-  
-  token = localStorage.getItem('token') as string
+   
+ token = localStorage.getItem('token') as string
+ uid=localStorage.getItem('uid') as string
+ // uid ='d1faadf7-015c-43dd-9638-366fbc20b87c'
+  //token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZmFhZGY3LTAxNWMtNDNkZC05NjM4LTM2NmZiYzIwYjg3YyIsIm5hbWUiOiJ5YWFuaSB0dSIsImVtYWlsIjoiNzY1NDZAZXhhbXBsZS5jb20iLCJwaG9uZU51bWJlciI6NzQ0MzkzNDIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NTcxMzUyNCwiZXhwIjoxNjg2MDczNTI0fQ.FBeUAjs_o-lDCxVK1LZS0rskhxoneZEmVqhDQIesuUA'
 
   constructor(private  http:HttpClient) { }
   makeOrder(): Observable<successMessages> {
-    return this.http.post<successMessages>('http://localhost:4000/order/d1faadf7-015c-43dd-9638-366fbc20b87c', '',
+    return this.http.post<successMessages>(`http://localhost:4000/order/${this.uid}`, '',
     {
       headers: new HttpHeaders().set('token',this.token)}
     );
   }
   getUserOrders():Observable<OrderUser[]>{
-    return this.http.get<OrderUser[]>('http://localhost:4000/order/d1faadf7-015c-43dd-9638-366fbc20b87c',
+    return this.http.get<OrderUser[]>(`http://localhost:4000/order/${this.uid}`,
     {
       headers: new HttpHeaders().set('token',this.token)}
     );

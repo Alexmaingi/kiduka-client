@@ -7,14 +7,14 @@
       placeholder="Search..."
       class="bg-transparent outline-none text-[1.2rem] text-[#637381] px-6"
     />
-    <button
+    <button  
       class="bg-[#637381] rounded-full justify-center items-center flex px-5 py-4"
-    >
-      <img src="../../../assets/icons/search.svg" alt="" />
+    > 
+      <img src="../../../assets/icons/search.svg" alt="" (click)="navigate()" />
     </button>
   </div>
-  <div class="flex items-center justify-center">
-    <img src="../../../assets/icons/busket.svg" alt="" />
+  <div class="flex items-center justify-center" (click)="navigate()" type="button">
+    <img src="../../../assets/icons/busket.svg" alt="" (click)="navigate()" type="button"/>
     <button
       class="w-[120px] h-[40px] px-[24px] py-[10px] bg-[#FFC831] rounded-full ml-5"
       *ngIf="!authService.isloggedIn()"

@@ -11,7 +11,7 @@ import { AddProductComponent } from '../add-product/add-product.component';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css'],
   standalone:true,
-  imports:[CommonModule]
+  imports:[CommonModule, RouterModule]
 })
 export class AdminProductsComponent {
   products!:Observable<Product[]>

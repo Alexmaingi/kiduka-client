@@ -8,36 +8,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CartService {
   totalPrice=0
-private cart:Cart[]=[{"productName": "unga",
-"id": "3a4c80ae-6dab-4a14-884b-fc491dd4fc77",
-"description": "utashiba",
-"price": 5000,
-"image": "https://i.shgcdn.com/80278c23-1489-4766-a1e8-ff5ee572e01a/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
-"count": 1,
-"cart_id":"1"},
-{
-"productName": "mic",
-"id": "2",
-"description": "utaskika",
-"price": 4000,
-"image": "https://i.shgcdn.com/80278c23-1489-4766-a1e8-ff5ee572e01a/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
-"count": 1,
-"cart_id":'1'}]
-  constructor(private http:HttpClient) { }
-  token = localStorage.getItem('token') as string
+ uid=localStorage.getItem('uid') as string
+// uid ='d1faadf7-015c-43dd-9638-366fbc20b87c'
 
+  constructor(private http:HttpClient) { }
+token = localStorage.getItem('token') as string
+//token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZmFhZGY3LTAxNWMtNDNkZC05NjM4LTM2NmZiYzIwYjg3YyIsIm5hbWUiOiJ5YWFuaSB0dSIsImVtYWlsIjoiNzY1NDZAZXhhbXBsZS5jb20iLCJwaG9uZU51bWJlciI6NzQ0MzkzNDIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NTcxMzUyNCwiZXhwIjoxNjg2MDczNTI0fQ.FBeUAjs_o-lDCxVK1LZS0rskhxoneZEmVqhDQIesuUA'
   getItemsInUserCart():Observable<Cart[]>{
     
-    return this.http.get<Cart[]>('http://localhost:4000/cart/d1faadf7-015c-43dd-9638-366fbc20b87c',{
+    return this.http.get<Cart[]>(`http://localhost:4000/cart/${this.uid}`,{
       headers:new HttpHeaders().set('token',this.token)
     })
   }
-  addItemsToCart():Observable<successMessages>{
-   
-    return this.http.post<successMessages>(`http://localhost:4000/cart/2bf24f4f-8e62-45c5-8c1b-577f25ee4ce3`,'',{
-      headers: new HttpHeaders().set('token',this.token)
-    })
-  }
+  
   increaseItemCount(id:string):Observable<successMessages>{
   
     return this.http.put<successMessages>(` http://localhost:4000/cart/increment/${id}`,'',{

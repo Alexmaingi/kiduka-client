@@ -19,6 +19,13 @@ export class ProductsComponent implements OnInit {
     this.products= this.productService.getAllProducts()
   }
 
+  addToCart(prod_id:string){
+this.productService.addItemsToCart(prod_id).subscribe(res=>{
+  console.log(res);
+  
+})
+  }
+
   //add if item is in cart remove btn
 
 }

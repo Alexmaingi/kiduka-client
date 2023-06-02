@@ -16,7 +16,7 @@ export class AddProductComponent {
 form!:FormGroup
 errorMessage!:string
 isUpdating=false
-updatedProduct = this.productservice.updatedProduct
+updatedProduct: Product|null = this.productservice.updatedProduct
 
 ngOnInit(): void {
 
@@ -30,7 +30,7 @@ ngOnInit(): void {
       description: [this.updatedProduct['description'], [Validators.required]],
       
     });  } else{
-
+      
   this.form = this.fb.group({
     productName: ['', [Validators.required]],
     inStock: ['', [Validators.required]],
@@ -42,6 +42,7 @@ ngOnInit(): void {
 }
   add(){
     if(!this.isUpdating){
+      
       this.productservice
       .addProduct({
         ...this.form.value,
@@ -59,7 +60,10 @@ ngOnInit(): void {
         }
       );
     console.log(this.form.value);
+    
+       
     } else{
+      if (this.updatedProduct){
       this.productservice
       .updateProduct(this.updatedProduct.id,{
         ...this.form.value,
@@ -69,17 +73,20 @@ ngOnInit(): void {
       .subscribe(
         (res) => {
           console.log(res.message);
+          this.updatedProduct= null;
         },
         (err) => {
           this.errorMessage = err.message;
           console.log(err.message);
+          // this.updatedProduct= null;
           
         }
       );
-    }
-    
+      this.form.reset()
+      
+      }
     }
     
 }
 
-
+}

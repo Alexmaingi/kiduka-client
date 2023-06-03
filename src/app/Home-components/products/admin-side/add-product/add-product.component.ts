@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/Services/product.service';
@@ -11,8 +11,9 @@ import { Product } from 'src/app/Interfaces';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit{
   constructor(public productservice:ProductService, private fb:FormBuilder){}
+ 
 form!:FormGroup
 errorMessage!:string
 isUpdating=false
@@ -68,8 +69,9 @@ ngOnInit(): void {
       .updateProduct(this.updatedProduct.id,{
         ...this.form.value,
         price: +this.form.value.price,
-        inStock: +this.form.value.inStock
-      })
+        inStock: +this.form.value.inStock,
+        
+      } )
       .subscribe(
         (res) => {
           console.log(res.message);
@@ -78,12 +80,11 @@ ngOnInit(): void {
         (err) => {
           this.errorMessage = err.message;
           console.log(err.message);
-          // this.updatedProduct= null;
+         this.updatedProduct= null;
           
         }
       );
-      this.form.reset()
-      
+      this.updatedProduct=null
       }
     }
     

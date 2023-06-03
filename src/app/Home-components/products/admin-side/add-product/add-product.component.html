@@ -4,7 +4,8 @@
         class="h-full flex flex-col justify-center bg-[#F6F7F9] p-[4rem] w-2/4"
       >
         <div class="flex flex-col items-center justify-center">
-          <h2 class="text-3xl font-bold pb-8">Add Product</h2>
+          <h2  *ngIf='!isUpdating' class="text-3xl font-bold pb-8">Add Product</h2>
+          <h2 *ngIf='isUpdating' class="text-3xl font-bold pb-8">Update Product</h2>
         </div>
   
         <form class="flex flex-col" (ngSubmit)="add()" [formGroup]="form">

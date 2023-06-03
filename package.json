@@ -19,6 +19,10 @@
     "@angular/platform-browser-dynamic": "^16.0.2",
     "@angular/router": "^16.0.2",
     "@ionic/angular": "^7.0.9",
+    "@ngrx/effects": "^16.0.1",
+    "@ngrx/entity": "^16.0.1",
+    "@ngrx/store": "^16.0.1",
+    "@ngrx/store-devtools": "^16.0.1",
     "material-icons": "^1.13.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -28,6 +32,7 @@
     "@angular-devkit/build-angular": "^16.0.2",
     "@angular/cli": "~16.0.2",
     "@angular/compiler-cli": "^16.0.2",
+    "@ionic/angular-toolkit": "latest",
     "@types/jasmine": "~4.3.0",
     "autoprefixer": "^10.4.14",
     "jasmine-core": "~4.5.0",
@@ -38,7 +43,6 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
-    "typescript": "~4.9.4",
-    "@ionic/angular-toolkit": "latest"
+    "typescript": "~4.9.4"
   }
 }

@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { Product } from 'src/app/Interfaces';
 import { ProductService } from 'src/app/Services/product.service';
-import { AddProductComponent } from '../add-product/add-product.component';
-
+import { AppState } from 'src/app/Store/app.state';
+import { Store } from '@ngrx/store';
+import * as actions from '../../../../Store/Actions/actions'
+import { selectAllProducts } from 'src/app/Store/Selectors/selector';
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
@@ -14,12 +16,12 @@ import { AddProductComponent } from '../add-product/add-product.component';
   imports:[CommonModule, RouterModule]
 })
 export class AdminProductsComponent {
-  products!:Observable<Product[]>
-  constructor(public productService:ProductService, private route:Router ){}
+  products=this.store.select(selectAllProducts)
+  constructor(public productService:ProductService, private route:Router, private store:Store<AppState> ){}
   
 
    ngOnInit(): void {
-     this.products= this.productService.getAllProducts()
+     this.store.dispatch(actions.getAllProducts())
    }
    delete(prod_id:string){
     this.productService.deleteProduct(prod_id).subscribe(res=>{

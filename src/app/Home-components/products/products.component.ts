@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Product } from 'src/app/Interfaces';
-import { ProductService } from 'src/app/Services/product.service';
+import {  Store } from '@ngrx/store';
+import *as actions from '../../Store/Actions/actions';
+import { selectAllProducts } from 'src/app/Store/Selectors/selector';
+import { AppState } from 'src/app/Store/app.state';
+
 
 @Component({
   selector: 'app-products',
@@ -13,19 +15,20 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
- products!:Observable<Product[]>
- constructor(public productService:ProductService, ){}
+ 
+
+ constructor( private store:Store<AppState>){}
+  
+ public products$$= this.store.select(selectAllProducts)
   ngOnInit(): void {
-    this.products= this.productService.getAllProducts()
+    this.store.dispatch(actions.getAllProducts())
   }
 
   addToCart(prod_id:string){
-this.productService.addItemsToCart(prod_id).subscribe(res=>{
-  console.log(res);
-  
-})
+this.store.dispatch(actions.addToCart({product_id:prod_id}))
+}
   }
 
   //add if item is in cart remove btn
 
-}
+

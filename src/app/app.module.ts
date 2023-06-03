@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,11 @@ import { IonicModule } from '@ionic/angular';
 import { AdminOrdersComponent } from './orders/admin-side/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './Home-components/products/admin-side/admin-products/admin-products.component'
 import { AddProductComponent } from './Home-components/products/admin-side/add-product/add-product.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { productReducers} from './Store/Reducers/reducer';
+import { ProductsEffects } from './Store/Effects/productsEffects';
 
 
 
@@ -29,7 +34,13 @@ import { AddProductComponent } from './Home-components/products/admin-side/add-p
     IonicModule.forRoot(),
     AdminOrdersComponent,
     SigninComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+  
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+  
+    StoreModule.forRoot({products:productReducers}, {}),
+  
+    EffectsModule.forRoot([ProductsEffects])
 
   ],
   providers: [],

@@ -77,3 +77,12 @@ export interface LogUserSuccess {
   uid:string
 }
 
+export interface ProductStateInterface{
+  isLoading:boolean,
+  product:Product[] ,
+  error:string | null, 
+  p_id:string,
+  getOneProductSuccess:string,
+  addToCartSuccess:string
+
+}

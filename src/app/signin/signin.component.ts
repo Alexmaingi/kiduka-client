@@ -33,7 +33,7 @@ export class SigninComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -41,17 +41,26 @@ export class SigninComponent {
   showParagraph = false;
 
   logIn() {
-    this.userService.loginUser(this.form.value).subscribe(
-      (res) => {
-        console.log(this.form.value);
-        this.errorMessage = null;
-        this.authservice.login(res);
-        this.router.navigateByUrl('/');
-      },
-      (err) => {
-        this.errorMessage = err.error.message;
-      }
-    );
+    if (this.form.valid) {
+      // Submit the form
+      this.userService.loginUser(this.form.value).subscribe(
+        (res) => {
+          console.log(this.form.value);
+          this.errorMessage = null;
+          this.authservice.login(res);
+          this.router.navigateByUrl('/');
+        },
+        (err) => {
+          this.errorMessage = err.error.message;
+        }
+      );
+    } else {
+      // Mark all fields as touched to display validation errors
+      Object.keys(this.form.controls).forEach((field) => {
+        const control = this.form.get(field);
+        control!.markAsTouched({ onlySelf: true });
+      });
+    }
   }
 
   sendEmail() {

@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import {
-  FormBuilder,
   FormGroup,
-  FormsModule,
+  FormBuilder,
   Validators,
   ReactiveFormsModule,
+  FormsModule,
 } from '@angular/forms';
 import { UserService } from '../Services/user.service';
 import { Router, RouterModule } from '@angular/router';
@@ -20,8 +20,9 @@ import { CommonModule } from '@angular/common';
 
 // handling validation from backend
 export class SignupComponent {
-  form!: FormGroup;
+  myForm!: FormGroup;
   errorMessage!: null;
+  form: any;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -29,30 +30,39 @@ export class SignupComponent {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
+    this.myForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{9}')]],
       password: ['', [Validators.required]],
-      // confirmPassword: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
     });
   }
 
   signUp() {
-    this.userService
-      .addUser({
-        ...this.form.value,
-        phoneNumber: +this.form.value.phoneNumber,
-      })
-      .subscribe(
-        (res) => {
-          console.log(res.message);
-          this.router.navigateByUrl('/');
-        },
-        (err) => {
-          this.errorMessage = err.message;
-        }
-      );
-    console.log(this.form.value);
+    if (this.myForm.valid) {
+      // Submit the form
+      this.userService
+        .addUser({
+          ...this.myForm.value,
+          phoneNumber: +this.myForm.value.phoneNumber,
+        })
+        .subscribe(
+          (res) => {
+            console.log(res.message);
+            this.router.navigateByUrl('/');
+          },
+          (err) => {
+            this.errorMessage = err.message;
+          }
+        );
+      console.log(this.myForm.value);
+    } else {
+      // Mark all fields as touched to display validation errors
+      Object.keys(this.myForm.controls).forEach((field) => {
+        const control = this.myForm.get(field);
+        control!.markAsTouched({ onlySelf: true });
+      });
+    }
   }
 }

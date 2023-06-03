@@ -7,7 +7,7 @@
         <h2 class="text-3xl font-bold pb-8">Sign Up</h2>
       </div>
 
-      <form class="flex flex-col" (ngSubmit)="signUp()" [formGroup]="form">
+      <form class="flex flex-col" (ngSubmit)="signUp()" [formGroup]="myForm">
         <label>Name:</label>
         <input
           placeholder="Enter your name"
@@ -15,6 +15,19 @@
           formControlName="name"
           required
         />
+        <div
+          *ngIf="
+            myForm.get('name')?.invalid &&
+            (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+          "
+        >
+          <div
+            *ngIf="myForm.get('name')?.errors?.['required']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Name is required.
+          </div>
+        </div>
         <label>Email:</label>
         <input
           placeholder="Enter your email"
@@ -22,6 +35,25 @@
           formControlName="email"
           required
         />
+        <div
+          *ngIf="
+            myForm.get('email')?.invalid &&
+            (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+          "
+        >
+          <div
+            *ngIf="myForm.get('email')?.errors?.['required']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Email is required.
+          </div>
+          <div
+            *ngIf="myForm.get('email')?.errors?.['email']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Invalid email format.
+          </div>
+        </div>
         <label>Phone: </label>
         <input
           placeholder="Enter you phone number"
@@ -29,6 +61,26 @@
           formControlName="phoneNumber"
           required
         />
+        <div
+          *ngIf="
+            myForm.get('phoneNumber')?.invalid &&
+            (myForm.get('phoneNumber')?.dirty ||
+              myForm.get('phoneNumber')?.touched)
+          "
+        >
+          <div
+            *ngIf="myForm.get('phoneNumber')?.errors?.['required']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            phoneNumber number is required.
+          </div>
+          <div
+            *ngIf="myForm.get('phoneNumber')?.errors?.['pattern']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Invalid phone number format.
+          </div>
+        </div>
         <label>Password:</label>
         <input
           placeholder="Enter your password"
@@ -36,13 +88,50 @@
           formControlName="password"
           required
         />
+        <div
+          *ngIf="
+            myForm.get('password')?.invalid &&
+            (myForm.get('password')?.dirty || myForm.get('password')?.touched)
+          "
+        >
+          <div
+            *ngIf="myForm.get('password')?.errors?.['required']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Password is required.
+          </div>
+        </div>
         <label>Confirm Password:</label>
         <input
           placeholder="Confirm password"
           type="password"
           name="confirmPassword"
+          formControlName="confirmPassword"
           required
         />
+        <div
+          *ngIf="
+            myForm.get('confirmPassword')?.invalid &&
+            (myForm.get('confirmPassword')?.dirty ||
+              myForm.get('confirmPassword')?.touched)
+          "
+        >
+          <div
+            *ngIf="myForm.get('confirmPassword')?.errors?.['required']"
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Confirm password is required.
+          </div>
+          <div
+            *ngIf="
+              myForm.get('confirmPassword')?.value !==
+              myForm.get('password')?.value
+            "
+            class="text-red-500 py-3 text-sm mb-3"
+          >
+            Passwords do not match.
+          </div>
+        </div>
         <button type="submit">Sign up</button>
       </form>
       <div class="flex flex-col items-center justify-center mt-10">

@@ -25,11 +25,7 @@ export class CartComponent implements OnInit {
     this.cart = this.cartService.getItemsInUserCart();
     this.totalPrice = this.cartService.setTotalPrice();
   }
-  addToCart() {
-    this.cartService.addItemsToCart().subscribe((res) => {
-      console.log(res.message);
-    });
-  }
+
 
   addCount(cart_id: string) {
     this.cartService.increaseItemCount(cart_id).subscribe((res) => {

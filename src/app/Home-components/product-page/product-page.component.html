@@ -1,36 +1,40 @@
 <div class="w-[1400px] min-h-full flex flex-col justify-center items-center">
-  <div class="flex mt-16">
+  <div class="flex mt-16" *ngIf="product$ | async as p">
     <div
       class="hover:bg-[#C1C0E5] bg-[#F9FAFB] rounded-[1rem] w-[530px] h-[530px] justify-center items-center flex"
     >
       <img
-        src="https://o.remove.bg/downloads/ad4105d2-3677-46f7-a946-ccd9ded78e3d/1-removebg-preview.png"
+        src=`{{p[0].image}}`
         alt=""
       />
     </div>
     <div
       class="rounded-[1rem] w-[530px] h-[530px] justify-center items-start p-16 flex flex-col"
     >
-      <h2 class="text-4xl px-2 font-[600] text-[#212B36]">Oraimo Smartmouse</h2>
+      <h2 class="text-4xl px-2 font-[600] text-[#212B36]">{{p[0].productName}}</h2>
       <h3 class="text-3xl my-4 px-2 font-[400] text-[#637381]">
-        Oraimo SmartMouse P Anti-skid Ergonomic Design Wide Compatibility
-        Professional Wireless Mouse
+      {{p[0].description}}
       </h3>
       <div class="flex justify-between text-center w-full mt-3 p-2">
         <h2 class="text-[20px] px-2 font-[600] text-[#FFC831]">
-          $1,999.00
+          {{p[0].price | currency}}
           <span class="text-[20px] px-2 font-[400] text-[#919EAB] line-through"
             >$2,999.00</span
           >
         </h2>
       </div>
-      <button
+      <button (click)="productService.addItemsToCart(p[0].id)"
         class="w-[320px] h-[40px] px-[24px] py-[10px] bg-[#FFC831] rounded-[1.5rem] my-8"
       >
         Add to Cart
       </button>
     </div>
   </div>
+
+
+
+
+
   <h2 class="text-4xl px-2 font-[600] text-[#212B36]">Recomended Products</h2>
 
   <div class="grid grid-cols-3 gap-10 mt-20">

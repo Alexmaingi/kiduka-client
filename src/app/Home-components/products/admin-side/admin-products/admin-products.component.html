@@ -1,0 +1,43 @@
+
+<div class="nav">
+  <a routerLink="/addProduct"> add Product</a>
+</div>
+<div class="my-10 w-[1400px] p-5 grid grid-cols-3 gap-10" *ngIf="products | async as prods">
+    <div class="rounded-[1rem] w-[356px]"  *ngFor="let p of prods">
+      <div 
+        class="hover:bg-[#C1C0E5] bg-[#F9FAFB] rounded-[1rem] w-[356px] h-[236px] justify-center items-center flex"
+      >
+        <img 
+          class="max-h-64"
+          src={{p.image}}
+          alt=""
+        />
+      </div>
+      <div class="m-7">
+        <h2 class="text-[14px] px-2 font-[600] text-[#212B36]">
+          {{p.productName}}
+        </h2>
+        <h3 class="text-[14px] my-4 px-2 font-[400] text-[#637381]">
+          {{p.description}}
+        </h3>
+        <div class="flex justify-between text-center w-full mt-3 p-2">
+          <h2 class="text-[14px] px-2 font-[600] text-[#FFC831]">
+           {{p.price | currency}}
+           
+          </h2>
+          <span
+            class="p-3 rounded-full hover:bg-[#C1C0E5] bg-[#F9FAFB] items-center justify-center flex"
+          >
+            <button (click)="delete(p.id)"
+              >Delete</button>
+             </span>
+          <span
+          class="p-3 rounded-full hover:bg-[#C1C0E5] bg-[#F9FAFB] items-center justify-center flex"
+        >
+            <button (click)="update(p)"
+            >Update</button
+        ></span>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -82,7 +82,8 @@ export const productReducers = createReducer(
         ...state,
         isLoading:false,
         error:null,
-        addToCartSuccess:action.message
+        addToCartSuccess:action.message,
+        
 
     })),
     on(actions.deleteProductFailure,(state, action)=>({
@@ -109,7 +110,8 @@ export const productReducers = createReducer(
         ...state,
         isLoading:false,
         error:null,
-        updateProductSuccess:action.message
+        updateProductSuccess:action.message,
+        
 
     })),
     on(actions.updateProductFailure,(state, action)=>({

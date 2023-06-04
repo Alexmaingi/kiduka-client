@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as actions from '../Actions/actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CartService } from 'src/app/Services/cart.service';
-import { catchError, exhaustMap, map, mergeMap, of } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class CartEffects {
@@ -29,7 +29,8 @@ export class CartEffects {
   increaseCount$ = createEffect(() =>{
     return this.actions$.pipe(
        ofType(actions.increaseCount),
-       mergeMap((action) =>
+       switchMap((action) =>
+
          this.cartService.increaseItemCount(action.cart_id).pipe(
            map((cart) => {
              console.log(cart);
@@ -37,13 +38,15 @@ export class CartEffects {
            }),
            catchError((error: any) => of(actions.increaseCountFailure(error)))
          )
+       ),switchMap(
+        ()=>[actions.loadCart()]
        )
      )  }
    );
    decreaseCount$ = createEffect(() =>{
     return this.actions$.pipe(
        ofType(actions.decreaseCount),
-       mergeMap((action) =>
+       switchMap((action) =>
          this.cartService.decreaseItemCount(action.cart_id).pipe(
            map((cart) => {
              console.log(cart);
@@ -51,6 +54,8 @@ export class CartEffects {
            }),
            catchError((error: any) => of(actions.decreaseCountFailure(error)))
          )
+       ),switchMap(
+        ()=>[actions.loadCart()]
        )
      )  }
    );
@@ -58,7 +63,7 @@ export class CartEffects {
    deleteCartItem$ = createEffect(() =>{
     return this.actions$.pipe(
        ofType(actions.deleteCartItem),
-       mergeMap((action) =>
+       switchMap((action) =>
          this.cartService.removeFromCart(action.cart_id).pipe(
            map((cart) => {
              console.log(cart);
@@ -66,6 +71,8 @@ export class CartEffects {
            }),
            catchError((error: any) => of(actions.deleteCartItemSuccess(error)))
          )
+       ),switchMap(
+        ()=>[actions.loadCart()]
        )
      )  }
    )

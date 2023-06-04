@@ -39,9 +39,9 @@
         <p class=" m-2 font-semibold">CART SUMMARY</p>
         <div class="cart-totals border flex justify-between ">
             <P class="m-2">Total</P>
-            <p class="m-2 font-bold" >KSH {{totalPrice | async}}</p>
+            <p class="m-2 font-bold" >KSH {{totalPrice$ | async}}</p>
         </div>
-         <button id="checkout" class="border m-2 " (click)="makeOrder()" >CHECKOUT({{totalPrice | async}})</button>
+         <button id="checkout" class="border m-2 " (click)="makeOrder()" >CHECKOUT({{totalPrice$ | async}})</button>
       
     </div>
 </div>

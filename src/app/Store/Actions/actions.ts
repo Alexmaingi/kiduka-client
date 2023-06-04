@@ -86,3 +86,8 @@ props<{error:string}>())
 
 
 //make order 
+export const makeOrder = createAction('[Order] make order ')
+export const makeOrderSuccess= createAction('[Cart API] make Order  Success', 
+props<{message:string}>())
+export const makeOrderFailure= createAction('[Cart API] make Order Failure', 
+props<{error:string}>())

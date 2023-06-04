@@ -1,9 +1,9 @@
-import { createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { AppState } from "../app.state";
-import { CartStateInterface, Product, ProductStateInterface } from "src/app/Interfaces";
+import { Cart, CartStateInterface, Product, ProductStateInterface } from "src/app/Interfaces";
 import * as actions from '../Actions/actions';
 export const selectProducts = (state:AppState)=> state.products
-export const selectCart =(state:AppState)=>state.cart
+export const selectCartState =createFeatureSelector<CartStateInterface>('cart')
 
 export const selectAllProducts = createSelector(
     selectProducts,
@@ -17,7 +17,22 @@ export const selectProduct= createSelector(
 )
 
 export const selectCartItems = createSelector(
-    selectCart,
+    selectCartState,
     (state:CartStateInterface)=> state.cart
 )
+export const selectCartId = createSelector(
+    selectCartState,
+    (state)=> state.cart_id
+)
+export const selectTotalPrice = 
+  createSelector(
+    selectCartItems,
+    (items: Cart[]) => {
+        let totalPrice=0
+      items.forEach((item)=>{
+       totalPrice = (item.price * item.count) + totalPrice
+      })
+      return totalPrice
+    }
+  );
 

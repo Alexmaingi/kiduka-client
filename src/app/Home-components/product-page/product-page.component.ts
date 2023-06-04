@@ -18,7 +18,7 @@ import { loadProduct } from 'src/app/Store/Actions/actions';
   styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent implements OnInit{
- product$!:Observable<Product[]>
+ product$=this.store.select(selectProduct)
 
   prodId:string =''
   constructor(public productService:ProductService, private route:ActivatedRoute, private store:Store<AppState>){}

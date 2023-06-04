@@ -69,7 +69,9 @@ export class ProductsEffects {
           }),
           catchError((error: any) => of(actions.deleteProductFailure(error)))
         )
-      )
+      ),switchMap(
+        ()=>[actions.getAllProducts()]
+       )
     )
   );
 

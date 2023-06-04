@@ -20,7 +20,7 @@ export class NavbarComponent {
   }
   toSignin(){
     
-    this.route.navigateByUrl('/signin')
+    this.route.navigateByUrl('/sigin')
   }
 
   

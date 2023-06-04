@@ -5,6 +5,10 @@ import { OrdersService } from '../Services/orders.service';
 import { Cart, Order } from '../Interfaces';
 import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectCartItems } from '../Store/Selectors/selector';
+import { AppState } from '../Store/app.state';
+import { decreaseCount, deleteCartItem, increaseCount, loadCart } from '../Store/Actions/actions';
 
 @Component({
   selector: 'app-cart',
@@ -18,35 +22,25 @@ export class CartComponent implements OnInit {
   constructor(
     public cartService: CartService,
     public orderService: OrdersService,
-    private route: Router
+    private route: Router,
+    private store:Store<AppState>
+
   ) {}
-  cart!: Observable<Cart[]>;
+  cart= this.store.select(selectCartItems)
   ngOnInit(): void {
-    this.cart = this.cartService.getItemsInUserCart();
+   this.store.dispatch(loadCart())
     this.totalPrice = this.cartService.setTotalPrice();
   }
 
 
   addCount(cart_id: string) {
-    this.cartService.increaseItemCount(cart_id).subscribe((res) => {
-      this.cart = this.cartService.getItemsInUserCart();
-      this.totalPrice = this.cartService.setTotalPrice();
-      console.log(res.message);
-    });
+    this.store.dispatch(increaseCount({cart_id:cart_id}))
   }
   minusCount(cart_id: string) {
-    this.cartService.decreaseItemCount(cart_id).subscribe((res) => {
-      this.cart = this.cartService.getItemsInUserCart();
-      this.totalPrice = this.cartService.setTotalPrice();
-      console.log(res.message);
-    });
+   this.store.dispatch(decreaseCount({cart_id:cart_id}))
   }
   deleteItem(cart_id: string) {
-    this.cartService.removeFromCart(cart_id).subscribe((res) => {
-      this.cart = this.cartService.getItemsInUserCart();
-      this.totalPrice = this.cartService.setTotalPrice();
-      console.log(res.message);
-    });
+  this.store.dispatch(deleteCartItem({cart_id:cart_id}))
   }
 
   makeOrder() {

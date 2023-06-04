@@ -84,5 +84,37 @@ export interface ProductStateInterface{
   p_id:string,
   getOneProductSuccess:string,
   addToCartSuccess:string
+  addToCartFailure:string
+  deleteProductSuccess:string
+  deleteProductFailure:string
+  addProductSuccess:string
+  addProductFailure:string
+  updateProductSuccess:string
+  updateProductFailure:string
 
+}
+
+export interface CartStateInterface{
+  isLoading:boolean,
+  cart:Cart[] ,
+  error:string,
+  loadCartSuccess:string,
+  loadCartFailure:string
+  cart_id:string
+}
+
+export interface OrdersStateInterface{
+  isLoading:boolean,
+  order:Order[] ,
+  error:string,
+  success:string,
+  order_id:string
+}
+
+export interface newProduct{
+  productName: string,
+  inStock:number,
+  price: number,
+  image: string,
+  description:string
 }

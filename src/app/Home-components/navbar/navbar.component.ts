@@ -15,8 +15,13 @@ export class NavbarComponent {
   uid=localStorage.getItem('uid')
 
   navigate(){
-    console.log('what');
-    
+  
     this.route.navigateByUrl('/cart')
   }
+  toSignin(){
+    
+    this.route.navigateByUrl('/signin')
+  }
+
+  
 }

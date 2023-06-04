@@ -17,6 +17,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { productReducers} from './Store/Reducers/reducer';
 import { ProductsEffects } from './Store/Effects/productsEffects';
+import { cartReducers } from './Store/Reducers/cartReducers';
+import { CartEffects } from './Store/Effects/cartEffects';
+import { OrdersEffects } from './Store/Effects/ordersEffects';
+import { ordersReducers } from './Store/Reducers/ordersReducers';
 
 
 
@@ -38,9 +42,9 @@ import { ProductsEffects } from './Store/Effects/productsEffects';
   
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   
-    StoreModule.forRoot({products:productReducers}, {}),
+    StoreModule.forRoot({products:productReducers, cart:cartReducers, orders:ordersReducers}, {}),
   
-    EffectsModule.forRoot([ProductsEffects])
+    EffectsModule.forRoot([ProductsEffects, CartEffects, OrdersEffects])
 
   ],
   providers: [],

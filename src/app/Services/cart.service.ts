@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Cart, addToCart, successMessages } from '../Interfaces';
-import { Observable, findIndex, map, reduce } from 'rxjs';
+import { Cart,  successMessages } from '../Interfaces';
+import { Observable, map, } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({

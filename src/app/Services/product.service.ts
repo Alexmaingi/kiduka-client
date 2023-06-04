@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Product, successMessages } from '../Interfaces';
+import { Product, newProduct, successMessages } from '../Interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AddProductComponent } from '../Home-components/products/admin-side/add-product/add-product.component';
@@ -39,7 +39,7 @@ export class ProductService {
     );
   }
   //add product
-  addProduct(product: Product): Observable<successMessages> {
+  addProduct(product: newProduct): Observable<successMessages> {
     return this.http.post<successMessages>(
       `http://localhost:4000/products`,
       product,

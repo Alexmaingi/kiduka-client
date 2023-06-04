@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/Services/product.service';
 import { Product } from 'src/app/Interfaces';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/Store/app.state';
+import { addProduct, updateProduct } from 'src/app/Store/Actions/actions';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +15,7 @@ import { Product } from 'src/app/Interfaces';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit{
-  constructor(public productservice:ProductService, private fb:FormBuilder){}
+  constructor(public productservice:ProductService, private fb:FormBuilder, private store:Store<AppState>){}
  
 form!:FormGroup
 errorMessage!:string
@@ -43,47 +46,19 @@ ngOnInit(): void {
 }
   add(){
     if(!this.isUpdating){
-      
-      this.productservice
-      .addProduct({
-        ...this.form.value,
-        price: +this.form.value.price,
-        inStock: +this.form.value.inStock
-      })
-      .subscribe(
-        (res) => {
-          console.log(res.message);
-        },
-        (err) => {
-          this.errorMessage = err.message;
-          console.log(err.message);
-          
-        }
-      );
-    console.log(this.form.value);
-    
+    this.store.dispatch(addProduct({newProduct:{...this.form.value,
+      price: +this.form.value.price,
+      inStock: +this.form.value.inStock}}))
        
     } else{
       if (this.updatedProduct){
-      this.productservice
-      .updateProduct(this.updatedProduct.id,{
-        ...this.form.value,
-        price: +this.form.value.price,
-        inStock: +this.form.value.inStock,
-        
-      } )
-      .subscribe(
-        (res) => {
-          console.log(res.message);
-          this.updatedProduct= null;
-        },
-        (err) => {
-          this.errorMessage = err.message;
-          console.log(err.message);
-         this.updatedProduct= null;
-          
-        }
-      );
+
+        this.store.dispatch(updateProduct({prod_id:this.updatedProduct.id,updatedProduct:{
+          ...this.form.value,
+          price: +this.form.value.price,
+          inStock: +this.form.value.inStock,
+        }}))
+     
       this.updatedProduct=null
       }
     }

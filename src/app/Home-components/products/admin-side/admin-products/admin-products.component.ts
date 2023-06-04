@@ -24,10 +24,7 @@ export class AdminProductsComponent {
      this.store.dispatch(actions.getAllProducts())
    }
    delete(prod_id:string){
-    this.productService.deleteProduct(prod_id).subscribe(res=>{
-      console.log(res.message);
-      this.products = this.productService.getAllProducts()
-    })
+   this.store.dispatch(actions.deleteProduct({product_id:prod_id}))
   }
     update(product:Product){
       this.productService.accessAddProduct(product);

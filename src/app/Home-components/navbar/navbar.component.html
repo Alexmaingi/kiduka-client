@@ -13,14 +13,17 @@
       <img src="../../../assets/icons/search.svg" alt="" (click)="navigate()" />
     </button>
   </div>
-  <div class="flex items-center justify-center" (click)="navigate()" type="button">
+  <div class="flex items-center justify-center"  type="button">
     <img src="../../../assets/icons/busket.svg" alt="" (click)="navigate()" type="button"/>
-    <button
+  
+      <button  
       class="w-[120px] h-[40px] px-[24px] py-[10px] bg-[#FFC831] rounded-full ml-5"
       *ngIf="!authService.isloggedIn()"
     >
-      <a routerLink="/signin">Sign In </a>
+      <a (click)="toSignin()">Sign In </a>
     </button>
+   
+   
     <button
       class="w-[120px] h-[40px] px-[24px] py-[10px] bg-[#FFC831] rounded-full ml-5"
       (click)="authService.logout()"

@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import {Cart, Product, newProduct} from '../../Interfaces/index'
+import {Cart, Order, OrderUser, Product, newProduct} from '../../Interfaces/index'
 
 //get all products
 export const getAllProducts= createAction('[Products] Get All Products')
@@ -90,4 +90,11 @@ export const makeOrder = createAction('[Order] make order ')
 export const makeOrderSuccess= createAction('[Cart API] make Order  Success', 
 props<{message:string}>())
 export const makeOrderFailure= createAction('[Cart API] make Order Failure', 
+props<{error:string}>())
+
+//get user orders
+export const getUserOrders= createAction('[Orders] Get User Orders')
+export const getUserOrdersSuccess= createAction('[Orders API] User Orders Load Success', 
+props<{orders:OrderUser[]}>())
+export const getUserOrdersFailure= createAction('[Orders API] User Orders Load Failure', 
 props<{error:string}>())

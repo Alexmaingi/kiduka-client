@@ -4,7 +4,7 @@ import { Cart, CartStateInterface, Product, ProductStateInterface } from "src/ap
 import * as actions from '../Actions/actions';
 export const selectProducts = (state:AppState)=> state.products
 export const selectCartState =createFeatureSelector<CartStateInterface>('cart')
-
+export const selectProdState =createFeatureSelector<ProductStateInterface>('product')
 export const selectAllProducts = createSelector(
     selectProducts,
     (state:ProductStateInterface)=> state.product
@@ -34,5 +34,20 @@ export const selectTotalPrice =
       })
       return totalPrice
     }
+  );
+
+  export const selectErrorMessage = createSelector(
+    selectCartState,
+    (state: CartStateInterface) => state.error
+  );
+  
+ 
+  export const selectSuccessMessage = createSelector(
+    selectCartState,
+    (state: CartStateInterface) => state.success
+  );
+  export const selectSuccessMessageAddToCart = createSelector(
+    selectProdState,
+    (state) => state.addToCartSuccess
   );
 

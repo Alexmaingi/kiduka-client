@@ -26,4 +26,19 @@ export class OrdersEffects {
        )
      )  }
    );
+   getUserOrders$ = createEffect(() =>{
+    return this.actions$.pipe(
+       ofType(actions.getUserOrders),
+       switchMap((action) =>
+         this.orderService.getUserOrders().pipe(
+           map((o) => {
+             console.log(o);
+             return actions.getUserOrdersSuccess({orders:o});
+           }),
+           catchError((error: any) => of(actions.getUserOrdersFailure(error)))
+         )
+       )
+     )  }
+   );
+   
 }

@@ -39,11 +39,8 @@ import { ordersReducers } from './Store/Reducers/ordersReducers';
     AdminOrdersComponent,
     SigninComponent,
     AdminProductsComponent,
-  
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-  
-    StoreModule.forRoot({products:productReducers, cart:cartReducers, orders:ordersReducers}, {}),
-  
+    StoreModule.forRoot({products:productReducers, cart:cartReducers, orders:ordersReducers}),
+    StoreDevtoolsModule.instrument({ maxAge: 25,name:"E-commerce"}),
     EffectsModule.forRoot([ProductsEffects, CartEffects, OrdersEffects])
 
   ],

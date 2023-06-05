@@ -1,6 +1,7 @@
 <div class="container flex m-8 gap-6 justify-center " >
     <div class="cart-details w-3/5 ">
-
+      <p *ngIf="success ">  {{success}}</p>
+      <p *ngIf="error$ | async"> {{error$ | async}}</p>
     <div *ngIf="cart | async as c">
         <div class="cart-title p-2 font-semibold flex justify-between">
             <p class="">cart ({{c.length}})</p>

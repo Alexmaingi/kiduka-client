@@ -1,5 +1,6 @@
 <div class="my-10 w-[1400px] p-5 grid grid-cols-3 gap-10" *ngIf="products$$ | async as prods">
   <div class="rounded-[1rem] w-[356px]"  *ngFor="let p of prods">
+    <p *ngIf="success$ | async">{{success$ | async}}</p>
     <div [routerLink]="'/products/'+p.id"
       class="hover:bg-[#C1C0E5] bg-[#F9FAFB] rounded-[1rem] w-[356px] h-[236px] justify-center items-center flex"
     >

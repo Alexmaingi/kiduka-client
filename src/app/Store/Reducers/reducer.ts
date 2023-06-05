@@ -69,7 +69,7 @@ export const productReducers = createReducer(
     on(actions.addToCartFailure,(state, {error})=>({
         ...state,
         isLoading:false,
-        error:error,
+        addToCartFailure:error
     })),
 
     //delete product

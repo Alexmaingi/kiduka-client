@@ -12,5 +12,17 @@ const initialState: OrdersStateInterface ={
 }
 export const ordersReducers = createReducer(
     initialState, 
-   
+    on(actions.getUserOrdersSuccess,(state, action)=>({
+        ...state,
+        isLoading:false,
+        error:'',
+        order:action.orders
+        
+    })),
+    on(actions.loadCartFailure,(state, action)=>({
+        ...state,
+        isLoading:false,
+        error:action.error,
+        success:""
+    })),
     )
